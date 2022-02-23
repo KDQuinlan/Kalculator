@@ -1,6 +1,7 @@
 import create from "zustand";
 import checkNumberInput from "./actions/checkNumberInput";
 import checkDeleteLastInput from "./actions/checkDeleteLastInput";
+import updateOperand from "./actions/updateOperand";
 import { evaluate } from "mathjs";
 import { LIST_OF_OPERATIONS } from "./constants";
 
@@ -8,11 +9,10 @@ interface State {
   currentEquation: string;
   selectedOperand: string;
   previousInput: string;
-  numberBeingTyped: string;
+
   setEquation: (currentEquation: string) => void;
   setOperand: (givenOperand: string) => void;
   setPreviousInput: (givenInput: string) => void;
-  setNumberBeingTyped: (givenInput: string) => void;
   addOperand: (givenOperand: string) => void;
   evaluateEquation: () => void;
   clearCalculator: () => void;
@@ -21,7 +21,6 @@ interface State {
 
 const useStore = create<State>((set) => ({
   currentEquation: "0",
-  numberBeingTyped: "0",
   selectedOperand: "",
   previousInput: "",
 
@@ -40,16 +39,9 @@ const useStore = create<State>((set) => ({
       previousInput: givenInput,
     }));
   },
-  setNumberBeingTyped: (givenInput: string) => {
-    set((state) => ({
-      numberBeingTyped: checkNumberInput(givenInput, state.currentEquation),
-    }));
-  },
   addOperand: (givenOperand: string) => {
-    set((state) => ({
-      currentEquation: LIST_OF_OPERATIONS.includes(state.previousInput)
-        ? state.currentEquation
-        : state.currentEquation.concat(" ", givenOperand),
+    set(() => ({
+      currentEquation: updateOperand(givenOperand),
     }));
   },
   evaluateEquation: () => {
