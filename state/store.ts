@@ -7,10 +7,12 @@ import { LIST_OF_OPERATIONS } from "./constants";
 
 interface State {
   currentEquation: string;
+  previousEquation: string;
   selectedOperand: string;
   previousInput: string;
 
   setEquation: (currentEquation: string) => void;
+  setPreviousEquation: (equation: string) => void;
   setOperand: (givenOperand: string) => void;
   setPreviousInput: (givenInput: string) => void;
   addOperand: (givenOperand: string) => void;
@@ -21,12 +23,18 @@ interface State {
 
 const useStore = create<State>((set) => ({
   currentEquation: "0",
+  previousEquation: "",
   selectedOperand: "",
   previousInput: "",
 
   setEquation: (givenNumber: string) => {
     set((state) => ({
       currentEquation: checkNumberInput(givenNumber, state.currentEquation),
+    }));
+  },
+  setPreviousEquation: (equation: string) => {
+    set(() => ({
+      previousEquation: equation,
     }));
   },
   setOperand: (givenOperand: string) => {

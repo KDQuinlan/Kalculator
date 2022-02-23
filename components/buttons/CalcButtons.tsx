@@ -16,17 +16,20 @@ const CalcButtons = (arr: any) => {
   const clearCalculator = useStore((state) => state.clearCalculator);
   const deleteLastInput = useStore((state) => state.deleteLastInput);
   const setPreviousInput = useStore((state) => state.setPreviousInput);
+  const setPreviousEquation = useStore((state) => state.setPreviousEquation);
 
   const checkFunction = (buttonValue: string) => {
+    const currentEquation = useStore.getState().currentEquation;
+
     if (buttonValue === "=") {
+      setPreviousEquation(currentEquation.concat(" ", "="));
       evaluateEquation();
     } else if (buttonValue === "DEL") {
       deleteLastInput();
-
-      const currentEquation = useStore.getState().currentEquation;
       setPreviousInput(currentEquation.substring(currentEquation.length - 1));
     } else if (buttonValue === "AC") {
       clearCalculator();
+      setPreviousEquation("");
     }
   };
 
