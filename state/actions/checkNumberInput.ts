@@ -1,9 +1,9 @@
 import useStore from "../store";
+import { LIST_OF_OPERATIONS } from "../constants";
 
 const checkNumberInput = (givenNumber: any, currentEquation: any) => {
   const previousInput = useStore.getState().previousInput;
   const selectedOperand = useStore.getState().selectedOperand;
-  const listOfOperations = ["X", "/", "+", "-"];
 
   const checkForDecimals =
     selectedOperand === ""
@@ -12,7 +12,7 @@ const checkNumberInput = (givenNumber: any, currentEquation: any) => {
 
   if (givenNumber === "." && checkForDecimals.includes(".")) return currentEquation;
   if (currentEquation === "0" && givenNumber !== ".") return givenNumber;
-  if (!listOfOperations.includes(previousInput)) return currentEquation.concat(givenNumber);
+  if (!LIST_OF_OPERATIONS.includes(previousInput)) return currentEquation.concat(givenNumber);
   return currentEquation.concat(" ", givenNumber);
 };
 

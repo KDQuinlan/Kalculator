@@ -2,6 +2,7 @@ import create from "zustand";
 import checkNumberInput from "./actions/checkNumberInput";
 import checkDeleteLastInput from "./actions/checkDeleteLastInput";
 import { evaluate } from "mathjs";
+import { LIST_OF_OPERATIONS } from "./constants";
 
 interface State {
   currentEquation: string;
@@ -46,14 +47,14 @@ const useStore = create<State>((set) => ({
   },
   addOperand: (givenOperand: string) => {
     set((state) => ({
-      currentEquation: ["X", "/", "+", "-"].includes(state.previousInput)
+      currentEquation: LIST_OF_OPERATIONS.includes(state.previousInput)
         ? state.currentEquation
         : state.currentEquation.concat(" ", givenOperand),
     }));
   },
   evaluateEquation: () => {
     set((state) => ({
-      currentEquation: ["X", "/", "+", "-"].includes(state.previousInput)
+      currentEquation: LIST_OF_OPERATIONS.includes(state.previousInput)
         ? state.currentEquation
         : parseFloat(evaluate(state.currentEquation.replace(/X/g, "*")).toPrecision(12)).toString(),
     }));

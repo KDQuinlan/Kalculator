@@ -1,10 +1,14 @@
 import React from "react";
-import useStore from "../state/store";
+import useStore from "../../state/store";
+import {
+  ButtonContainer,
+  CalcNumberButton,
+  CalcOperatorButton,
+  CalcFunctionButton,
+} from "./StyledButtons";
+import { LIST_OF_NUMBERS, LIST_OF_OPERATIONS } from "../../state/constants";
 
 const CalcButtons = (arr: any) => {
-  const listOfNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "."];
-  const listOfOperations = ["X", "/", "+", "-"];
-
   const setEquation = useStore((state) => state.setEquation);
   const setOperand = useStore((state) => state.setOperand);
   const addOperand = useStore((state) => state.addOperand);
@@ -27,12 +31,11 @@ const CalcButtons = (arr: any) => {
   };
 
   return (
-    <div className="grid w-[20rem] grid-cols-4 gap-0.5 bg-black md:w-[24rem]">
+    <ButtonContainer>
       {arr.arr.map((arrVal: any) => {
-        if (listOfNumbers.includes(arrVal)) {
+        if (LIST_OF_NUMBERS.includes(arrVal)) {
           return (
-            <button
-              className="h-20 bg-darktheme-800 text-2xl text-white first:col-span-2 last:col-span-2 md:h-24"
+            <CalcNumberButton
               key={arrVal}
               value={arrVal}
               onClick={(e) => {
@@ -41,12 +44,11 @@ const CalcButtons = (arr: any) => {
               }}
             >
               {arrVal}
-            </button>
+            </CalcNumberButton>
           );
-        } else if (listOfOperations.includes(arrVal)) {
+        } else if (LIST_OF_OPERATIONS.includes(arrVal)) {
           return (
-            <button
-              className="h-20 bg-violet-400 text-2xl font-semibold first:col-span-2 last:col-span-2 md:h-24"
+            <CalcOperatorButton
               key={arrVal}
               value={arrVal}
               onClick={(e) => {
@@ -56,22 +58,21 @@ const CalcButtons = (arr: any) => {
               }}
             >
               {arrVal}
-            </button>
+            </CalcOperatorButton>
           );
         } else {
           return (
-            <button
-              className="h-20 bg-violet-300 text-2xl font-semibold first:col-span-2 last:col-span-2 md:h-24"
+            <CalcFunctionButton
               key={arrVal}
               value={arrVal}
               onClick={(e) => checkFunction(e.currentTarget.value)}
             >
               {arrVal}
-            </button>
+            </CalcFunctionButton>
           );
         }
       })}
-    </div>
+    </ButtonContainer>
   );
 };
 
