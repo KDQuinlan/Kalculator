@@ -24,6 +24,7 @@ const checkNumberInput = (givenNumber: any, currentEquation: any) => {
   if (givenNumber === "." && checkForDecimals.includes(".")) return currentEquation;
   if (currentEquation === "0" && givenNumber !== ".") return givenNumber;
   if (!LIST_OF_OPERATIONS.includes(previousInput)) return currentEquation.concat(givenNumber);
+  if (lastCharacter === ".") return currentEquation.concat(givenNumber);
   return currentEquation.concat(" ", givenNumber);
 };
 

@@ -10,6 +10,8 @@ const updateOperand = (givenOperand: string) => {
     .substring(allButLastCharacter.length - 1)
     .trim();
 
+  if (lastCharacter === ".") return currentEquation;
+
   if (LIST_OF_OPERATIONS.includes(secondToLastCharacter) && lastCharacter === "-")
     return currentEquation;
 
