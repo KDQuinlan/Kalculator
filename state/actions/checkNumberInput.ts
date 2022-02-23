@@ -10,8 +10,6 @@ const checkNumberInput = (givenNumber: any, currentEquation: any) => {
       ? currentEquation
       : currentEquation.substring(currentEquation.lastIndexOf(selectedOperand) + 1);
 
-  console.log(checkForDecimals);
-
   if (givenNumber === "." && checkForDecimals.includes(".")) return currentEquation;
   if (currentEquation === "0" && givenNumber !== ".") return givenNumber;
   if (!listOfOperations.includes(previousInput)) return currentEquation.concat(givenNumber);

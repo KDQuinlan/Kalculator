@@ -8,17 +8,6 @@ const buttonValues = ["AC", "DEL", "X", 1, 2, 3, "/", 4, 5, 6, "+", 7, 8, 9, "-"
 
 const Home: NextPage = () => {
   const currentEquation = useStore((state) => state.currentEquation);
-  // const selectedOperand = useStore((state) => state.selectedOperand);
-  // console.log(selectedOperand);
-
-  // const after_ = currentEquation.substring(currentEquation.lastIndexOf("X") + 1);
-  // console.log(after_);
-
-  // const text =
-  //   selectedOperand === ""
-  //     ? null
-  //     : currentEquation.substring(currentEquation.lastIndexOf(selectedOperand) + 1);
-  // console.log(text);
 
   return (
     <div>
@@ -28,7 +17,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="flex h-screen w-screen flex-col items-center justify-center bg-darktheme-900">
-        <div className="flex h-24 w-[24rem] items-center justify-end break-all bg-darktheme-800 pr-10 text-3xl text-white">
+        <div className="flex h-20 w-[20rem] items-center justify-end break-all bg-darktheme-800 pr-10 text-3xl text-white md:h-24 md:w-[24rem]">
           {currentEquation}
         </div>
         <CalcButtons arr={buttonValues} />

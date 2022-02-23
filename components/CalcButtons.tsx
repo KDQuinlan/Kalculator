@@ -27,12 +27,12 @@ const CalcButtons = (arr: any) => {
   };
 
   return (
-    <div className="grid w-[24rem] grid-cols-4 gap-0.5 bg-black">
+    <div className="grid w-[20rem] grid-cols-4 gap-0.5 bg-black md:w-[24rem]">
       {arr.arr.map((arrVal: any) => {
         if (listOfNumbers.includes(arrVal)) {
           return (
             <button
-              className="h-24 bg-darktheme-800 text-2xl text-white first:col-span-2 last:col-span-2"
+              className="h-20 bg-darktheme-800 text-2xl text-white first:col-span-2 last:col-span-2 md:h-24"
               key={arrVal}
               value={arrVal}
               onClick={(e) => {
@@ -46,7 +46,7 @@ const CalcButtons = (arr: any) => {
         } else if (listOfOperations.includes(arrVal)) {
           return (
             <button
-              className="h-24 bg-violet-400 text-2xl font-semibold first:col-span-2 last:col-span-2"
+              className="h-20 bg-violet-400 text-2xl font-semibold first:col-span-2 last:col-span-2 md:h-24"
               key={arrVal}
               value={arrVal}
               onClick={(e) => {
@@ -61,7 +61,7 @@ const CalcButtons = (arr: any) => {
         } else {
           return (
             <button
-              className="h-24 bg-violet-300 text-2xl font-semibold first:col-span-2 last:col-span-2"
+              className="h-20 bg-violet-300 text-2xl font-semibold first:col-span-2 last:col-span-2 md:h-24"
               key={arrVal}
               value={arrVal}
               onClick={(e) => checkFunction(e.currentTarget.value)}
