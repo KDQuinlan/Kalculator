@@ -25,6 +25,13 @@ const checkNumberInput = (givenNumber: any, currentEquation: any) => {
 
   if (givenNumber === "." && checkForDecimals.includes(".")) return currentEquation;
 
+  if (
+    isNaN(Number(previousInput)) === false &&
+    LIST_OF_OPERATIONS.includes(lastCharacter) &&
+    givenNumber === "."
+  ) {
+    return currentEquation.concat(" 0", givenNumber);
+  }
   if (currentEquation === "0" && givenNumber !== ".") return givenNumber;
 
   if (!LIST_OF_OPERATIONS.includes(previousInput)) return currentEquation.concat(givenNumber);
