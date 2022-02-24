@@ -10,11 +10,14 @@ interface State {
   previousEquation: string;
   selectedOperand: string;
   previousInput: string;
+  previousCalculations: any;
 
-  setEquation: (currentEquation: string) => void;
+  setEquation: (givenNumber: string) => void;
+  setEquationFromPreviousResult: (givenNumber: string) => void;
   setPreviousEquation: (equation: string) => void;
   setOperand: (givenOperand: string) => void;
   setPreviousInput: (givenInput: string) => void;
+  setPreviousCalculations: (equationAndAnswer: string[]) => void;
   addOperand: (givenOperand: string) => void;
   evaluateEquation: () => void;
   clearCalculator: () => void;
@@ -26,10 +29,16 @@ const useStore = create<State>((set) => ({
   previousEquation: "",
   selectedOperand: "",
   previousInput: "",
+  previousCalculations: [],
 
   setEquation: (givenNumber: string) => {
     set((state) => ({
       currentEquation: checkNumberInput(givenNumber, state.currentEquation),
+    }));
+  },
+  setEquationFromPreviousResult: (givenNumber: string) => {
+    set(() => ({
+      currentEquation: givenNumber,
     }));
   },
   setPreviousEquation: (equation: string) => {
@@ -45,6 +54,11 @@ const useStore = create<State>((set) => ({
   setPreviousInput: (givenInput: string) => {
     set(() => ({
       previousInput: givenInput,
+    }));
+  },
+  setPreviousCalculations: (equationAndAnswer: string[]) => {
+    set(() => ({
+      previousCalculations: equationAndAnswer,
     }));
   },
   addOperand: (givenOperand: string) => {

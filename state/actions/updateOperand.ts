@@ -19,6 +19,10 @@ const updateOperand = (givenOperand: string) => {
     return allButLastCharacter.concat(" ", givenOperand);
   }
 
+  if (isNaN(Number(previousInput)) === false && LIST_OF_OPERATIONS.includes(lastCharacter)) {
+    return allButLastCharacter.concat(" ", givenOperand);
+  }
+
   if (currentEquation === "0" && givenOperand === "-") return givenOperand;
 
   if (

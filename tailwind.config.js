@@ -8,6 +8,9 @@ module.exports = {
           800: "#181818",
         },
       },
+      fontFamily: {
+        glyphs: ["'Supermercado One', cursive"],
+      },
     },
   },
   plugins: [],

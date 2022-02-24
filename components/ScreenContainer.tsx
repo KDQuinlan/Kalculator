@@ -4,9 +4,10 @@ const ScreenContainer = tw.main`
     flex 
     h-screen 
     w-screen 
-    flex-col 
-    items-center 
-    justify-center 
+    flex-row 
+    items-center
+    justify-end
+    static
     bg-darktheme-900
 `;
 
